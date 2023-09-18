@@ -5,13 +5,12 @@
 # Google API code from https://developers.google.com/youtube/v3/code_samples/code_snippets, licensed Apache 2.0
 #
 import os
+import json
+import html
 
 import google_auth_oauthlib.flow
 import googleapiclient.discovery
 import googleapiclient.errors
-
-import json
-import html
 
 scopes = ["https://www.googleapis.com/auth/youtube.readonly"]
 
@@ -27,7 +26,7 @@ def main():
 
     flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(
         client_secrets_file, scopes)
-    credentials = flow.run_console()
+    credentials = flow.run_local_server()
     youtube = googleapiclient.discovery.build(
         api_service_name, api_version, credentials=credentials)
 
